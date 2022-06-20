@@ -1,3 +1,6 @@
 # Project_gmar
  
-Welcome to my github here you can find the code of my final project that will conclued my studies !
+Welcome to the project "Migrating ERP system to BI with Cassandra". In this following branch you can see the code of our benchmarks that we had build.
+
+## Timestamp Benchmark :
+
