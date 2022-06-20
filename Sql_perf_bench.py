@@ -37,13 +37,15 @@ def threadFunction(rows,idx):
     finally:
         lock.release()
 #-------------------------Get the Excel--------------------------------
-file = open("workload500.csv")
+file = open("workload100.csv")
 csvreader = csv.reader(file)
 header = next(csvreader)
 rows = []
 for row in csvreader:
     rows.append(row)
 file.close()
+
+print("################################################## SQLite Benchmark ######################################################\n")
 
 con = sqlite3.connect('storage.db' ,check_same_thread=False)
 cur = con.cursor()

@@ -1,0 +1,52 @@
+#spacename: example # idenitifier for this spec if running with multiple yaml files
+keyspace: example
+
+# Would almost always be network topology unless running something locally
+keyspace_definition: |
+  CREATE KEYSPACE example WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3};
+
+table: person
+
+# The table under test. Start with a partition per staff member
+# Is this a good idea?
+table_definition: |
+  CREATE TABLE person(
+        id text,
+        first_name text,
+        last_name text,
+        country text,
+        profession text,
+        PRIMARY KEY(id)
+  )
+
+columnspec:
+  - name: id
+    size: uniform(1..2) # The size of the id members are between 1-2 characters
+    population: uniform(1..26) # 26 possible id members to pick from
+  - name: first_name
+    size: uniform(2..5)
+  - name: last_name
+    size: uniform(2..5)
+  - name: country
+    size: uniform(2..10)
+  - name: profession
+    size: normal(10..15,5)
+
+insert:
+  # we only update a single partition in any given insert
+  partitions: fixed(1)
+  # we want to insert a single row per partition and we have between 20 and 500
+  # rows per partition
+  select: fixed(1)/500
+  batchtype: UNLOGGED             # Single partition unlogged batches are essentially noops
+
+queries:
+   delete:
+      cql: delete from person where id = ?
+      fields: samerow
+   select:
+      cql: select *  from person where id = ?
+      fields: samerow
+   update:
+      cql: UPDATE person set first_name = ? where id = ? 
+      fields: samerow
