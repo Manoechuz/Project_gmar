@@ -9,13 +9,14 @@ This programs must run on python 3 use the file "generator.py" it will ask you t
 ## Timestamp Benchmark :
 
 There is here 2 main programs :
-      - For the benchmark of Cassandra and SQLite without Timestamp use the file : "Without_Timestamp_Benchmark.py"
-      - For the benchmark of Cassandra and SQLite with Timestamp use the file : "With_Timestamp_Benchmark.py"
+- For the benchmark of Cassandra and SQLite without Timestamp use the file : "Without_Timestamp_Benchmark.py"
+- For the benchmark of Cassandra and SQLite with Timestamp use the file : "With_Timestamp_Benchmark.py
+
 Make sure that before the run you have install Cassandra and SQLite and generate data or download the workloads file given here, and that you have in your databases created the table "persons" with his features, you can create him by using line of code in the programs or create directly on the terminal.
 
 ## SQLite Benchmark :
 
-Must have a workload ready before launch you can use him in the program "Sql_perf_bench.py"
+Must have a workload ready before launch you can use the program "Sql_perf_bench.py" to launch a benchmark.
 
 ## Cassandra-Stress:
 
